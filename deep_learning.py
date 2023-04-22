@@ -71,12 +71,15 @@ n_neurons = [10, 50, 100]
 l_rate = [0.01, 0.05, 0.1]
 
 bestModel = build_model(0, 2, 10, 0.01)
-accuracy = 0
+highestAccuracy = 0
+total = len(y_test)
+h = 2
+n = 10
+l = 0.01
 
 for i in n_hidden:                          #looking or the best parameters w.r.t the number of hidden layers
     for j in n_neurons:                      #looking or the best parameters w.r.t the number of neurons
         for k in l_rate:                  #looking or the best parameters w.r.t the learning rate
-
             #build the model for each combination by calling the function:
             #model = build_model()
             #-->add your Pyhton code here
@@ -89,8 +92,19 @@ for i in n_hidden:                          #looking or the best parameters w.r.
 
             #Calculate the accuracy of this neural network and store its value if it is the highest so far. To make a prediction, do:
             class_predicted = np.argmax(model.predict(X_test), axis=-1)
+            numberRight = 0
+            for a in range(len(y_test)):
+                if class_predicted[a] == y_test[a]:
+                    numberRight += 1
+            accuracy = numberRight / total
+            if accuracy > highestAccuracy:
+                highestAccuracy = accuracy
+                h = i
+                n = j
+                l = k
+
             #-->add your Pyhton code here
-            print(class_predicted)
+            #print(class_predicted)
             print("Highest accuracy so far: " + str(highestAccuracy))
             print("Parameters: " + "Number of Hidden Layers: " + str(h) + ",number of neurons: " + str(n) + ",learning rate: " + str(l))
             print()
