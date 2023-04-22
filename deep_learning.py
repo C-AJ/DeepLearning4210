@@ -102,6 +102,7 @@ for i in n_hidden:                          #looking or the best parameters w.r.
                 h = i
                 n = j
                 l = k
+                bestModel = model
 
             #-->add your Pyhton code here
             #print(class_predicted)
@@ -116,7 +117,7 @@ for i in n_hidden:                          #looking or the best parameters w.r.
 
 #print(model.summary())
 img_file = './model_arch.png'
-tf.keras.utils.plot_model(model, to_file=img_file, show_shapes=True, show_layer_names=True)
+tf.keras.utils.plot_model(bestModel, to_file=img_file, show_shapes=True, show_layer_names=True)
 
 #plotting the learning curves of the best model
 pd.DataFrame(history.history).plot(figsize=(8, 5))
