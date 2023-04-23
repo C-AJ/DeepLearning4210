@@ -71,6 +71,7 @@ n_neurons = [10, 50, 100]
 l_rate = [0.01, 0.05, 0.1]
 
 bestModel = build_model(0, 2, 10, 0.01)
+history = bestModel.fit(X_train, y_train, epochs=5, validation_data=(X_valid, y_valid))
 highestAccuracy = 0
 total = len(y_test)
 h = 2
@@ -88,7 +89,7 @@ for i in n_hidden:                          #looking or the best parameters w.r.
             #To train the model
             #history = model.fit(X_train, y_train, epochs=5, validation_data=(X_valid, y_valid))  #epochs = number times that the learning algorithm will work through the entire training dataset.
             #-->add your Pyhton code here
-            model.fit(X_train, y_train, epochs=5, validation_data=(X_valid, y_valid))
+            present = model.fit(X_train, y_train, epochs=5, validation_data=(X_valid, y_valid))
 
             #Calculate the accuracy of this neural network and store its value if it is the highest so far. To make a prediction, do:
             class_predicted = np.argmax(model.predict(X_test), axis=-1)
@@ -103,6 +104,7 @@ for i in n_hidden:                          #looking or the best parameters w.r.
                 n = j
                 l = k
                 bestModel = model
+                history = present
 
             #-->add your Pyhton code here
             #print(class_predicted)
